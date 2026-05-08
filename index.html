@@ -350,64 +350,76 @@
   .player__main:focus-visible { outline: none; }
   .player__main:focus-visible .player__ring {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      inset 0 -2px 5px rgba(0, 0, 0, 0.55),
-      0 22px 44px -20px rgba(26, 26, 26, 0.6),
+      inset 0 2px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+      0 4px 0 #b9aa86,
+      0 5px 0 #8d7d5e,
+      0 16px 28px -10px rgba(26, 26, 26, 0.4),
       0 0 0 3px var(--sage);
   }
 
+  /* 옛날 베이지 키보드 키캡 */
   .player__ring {
-    width: clamp(96px, 11vw, 128px);
-    height: clamp(96px, 11vw, 128px);
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 32% 26%, #4d453c 0%, #2a2520 55%, #14110d 100%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: clamp(118px, 13vw, 144px);
+    height: clamp(96px, 11vw, 122px);
+    border-radius: 12px;
+    background: linear-gradient(180deg, #f5ebcf 0%, #e1d4ad 100%);
+    border: 1px solid rgba(120, 102, 72, 0.55);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      inset 0 -2px 5px rgba(0, 0, 0, 0.55),
-      0 22px 44px -20px rgba(26, 26, 26, 0.55),
-      0 4px 12px rgba(26, 26, 26, 0.18);
+      inset 0 2px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+      0 4px 0 #b9aa86,
+      0 5px 0 #8d7d5e,
+      0 16px 28px -10px rgba(26, 26, 26, 0.4);
     position: relative;
     display: grid;
     place-items: center;
-    transition: transform 0.12s ease, box-shadow 0.2s ease;
+    padding-top: 12px;
+    transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.15s ease;
   }
-  .player__main:hover .player__ring {
+  .player__main:hover .player__ring { filter: brightness(1.04); }
+  .player__main:active .player__ring {
+    transform: translateY(3px);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      inset 0 -2px 5px rgba(0, 0, 0, 0.55),
-      0 24px 48px -18px rgba(26, 26, 26, 0.6),
-      0 4px 14px rgba(26, 26, 26, 0.2);
+      inset 0 2px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+      0 1px 0 #b9aa86,
+      0 2px 0 #8d7d5e,
+      0 6px 14px -6px rgba(26, 26, 26, 0.3);
   }
-  .player__main:active .player__ring { transform: translateY(2px); }
 
-  /* 외곽 미세한 메탈 라인 */
+  /* 키 상단 라벨 (PLAY / PAUSE) */
   .player__ring::before {
-    content: '';
+    content: 'PLAY';
     position: absolute;
-    inset: 4%;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(26, 26, 26, 0.45);
     pointer-events: none;
   }
+  .player__main[aria-pressed="true"] .player__ring::before { content: 'PAUSE'; }
 
+  /* 키 안쪽 음각 면 */
   .player__face {
-    width: 70%;
-    height: 70%;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 36% 28%, #f4ead0 0%, #ddd1ad 65%, #a89977 100%);
+    width: 58%;
+    aspect-ratio: 1;
+    border-radius: 7px;
+    background: radial-gradient(circle at 36% 28%, #efe2bc 0%, #cdbf95 100%);
     box-shadow:
-      inset 0 2px 4px rgba(0, 0, 0, 0.18),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.45),
-      0 1px 0 rgba(0, 0, 0, 0.2);
+      inset 0 1px 3px rgba(0, 0, 0, 0.22),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.4);
     display: grid;
     place-items: center;
-    position: relative;
+    margin-top: 4px;
   }
   .player__icon {
-    width: 38%;
+    width: 44%;
     height: auto;
     color: #1a1a1a;
     fill: currentColor;
@@ -727,7 +739,7 @@
     <div class="container">
       <header class="section__head">
         <p class="meta">01 — Our Frames &nbsp;·&nbsp; 두 분의 시간들</p>
-        <h2 class="section__title">함께한 모든 장면이,<br />우리에겐 <span class="poem">시(詩)</span>였습니다.</h2>
+        <h2 class="section__title">함께한 모든 장면이,<br />우리에겐 시<span class="poem">(詩)</span>였습니다.</h2>
         <p class="section__lede">
           어떤 사진은 한 번에 스쳐가지만, 어떤 사진은 오래 머물게 됩니다. 천천히 한 장씩, 그 시간을 만나주세요.
         </p>
@@ -766,7 +778,7 @@
         <p class="meta">02 — A Letter Home &nbsp;·&nbsp; 어머니, 아버지께</p>
         <h2 class="section__title">오래 미뤄둔 마음을,<br />오늘 한 자 한 자 적어둡니다.</h2>
         <p class="section__lede">
-          평소엔 입 밖으로 잘 나오지 않던 말들. 부족한 자식이지만, 오늘은 글로라도 두고 갑니다.
+          엄마 아빠, 오늘만큼은 평소에 잘 못 드리던 마음을 — 한 자 한 자, 천천히 적어두려고요. 부족한 큰아들이지만, 받아주실 거죠?
         </p>
       </header>
 
