@@ -217,28 +217,211 @@
     margin-top: 16px;
   }
 
-  /* FILM */
-  .film {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: var(--ink);
-    overflow: hidden;
+  /* CAROUSEL */
+  .carousel { position: relative; }
+  .carousel__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    background: #14130f;
     border: 1px solid var(--line);
+    outline: none;
   }
-  .film iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+  .carousel__track::-webkit-scrollbar { display: none; height: 0; width: 0; }
+  .carousel__slide {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    background: #14130f;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (min-width: 720px) {
+    .carousel__slide { aspect-ratio: 16 / 10; }
+  }
+  .carousel__slide img {
+    width: 100%; height: 100%;
+    object-fit: contain;
     display: block;
   }
-  .film__caption {
-    margin-top: 14px;
+  .carousel__bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 18px; gap: 16px;
+  }
+  .carousel__nav { display: flex; gap: 10px; }
+  .carousel__btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--ink);
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .carousel__btn:hover,
+  .carousel__btn:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    outline: none;
+  }
+
+  /* CASSETTE PLAYER (우측 하단 floating) */
+  .cassette {
+    position: fixed;
+    right: clamp(14px, 2.2vw, 28px);
+    bottom: clamp(14px, 2.2vw, 28px);
+    z-index: 60;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: grid;
+    gap: 8px;
+    font-family: inherit;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cassette:focus-visible { outline: 2px solid var(--sage); outline-offset: 6px; }
+
+  .cassette__body {
+    width: clamp(132px, 14vw, 168px);
+    aspect-ratio: 16 / 10;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #3a342d 0%, #221e19 70%, #15120e 100%);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+      0 22px 40px -22px rgba(26, 26, 26, 0.6);
+    position: relative;
+    padding: 9% 9% 11%;
+    overflow: hidden;
+  }
+  .cassette__label {
+    position: absolute;
+    left: 9%; right: 9%; top: 11%;
+    height: 30%;
+    background: linear-gradient(180deg, #f3ead2 0%, #e9dec0 100%);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    color: #1a1816;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 8%;
+    font-size: clamp(7px, 0.6vw, 9px);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .cassette__title { font-weight: 700; }
+  .cassette__sub { color: rgba(26, 24, 22, 0.55); margin-top: 1px; }
+
+  .cassette__reels {
+    position: absolute;
+    left: 9%; right: 9%; bottom: 11%;
+    height: 36%;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    align-items: center;
+  }
+  .cassette__reel {
+    width: 28%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%,
+        #1a1816 0 18%,
+        #44403a 18% 22%,
+        #2a2520 22% 38%,
+        #4a4540 38% 100%);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    position: relative;
+  }
+  .cassette__reel::before {
+    content: '';
+    position: absolute; inset: 18%;
+    border-radius: 50%;
+    background:
+      repeating-conic-gradient(from 0deg,
+        transparent 0deg 18deg,
+        rgba(0, 0, 0, 0.55) 18deg 30deg);
+    -webkit-mask: radial-gradient(circle, #000 32%, transparent 60%);
+            mask: radial-gradient(circle, #000 32%, transparent 60%);
+  }
+  .cassette__reel::after {
+    content: '';
+    position: absolute; inset: 38%;
+    border-radius: 50%;
+    background: #15120e;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .cassette__tape {
+    position: absolute;
+    left: 14%; right: 14%; bottom: 16%;
+    height: 8%;
+    background: linear-gradient(180deg, #1a1612 0%, #0d0a08 100%);
+    border-radius: 1px;
+    opacity: 0.7;
+  }
+
+  .cassette[aria-pressed="true"] .cassette__reel {
+    animation: cassette-spin 1.6s linear infinite;
+  }
+  @keyframes cassette-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .cassette__cta {
+    font-size: var(--fs-meta);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: right;
+    padding-right: 2px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+  }
+  .cassette__dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(26,26,26,0.35);
+    transition: background .2s ease;
+  }
+  .cassette[aria-pressed="true"] .cassette__dot {
+    background: #c75c4a;
+    box-shadow: 0 0 0 4px rgba(199, 92, 74, 0.18);
+    animation: cassette-pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes cassette-pulse {
+    50% { opacity: 0.4; }
+  }
+
+  .yt-host {
+    position: fixed;
+    width: 1px; height: 1px;
+    left: -10000px; top: -10000px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cassette[aria-pressed="true"] .cassette__reel { animation: none; }
   }
 
   /* LETTER FORM */
@@ -492,30 +675,39 @@
     </div>
   </section>
 
-  <!-- 02 — FILM -->
-  <section class="section" id="film">
+  <!-- 02 — MEMORIES (carousel) -->
+  <section class="section" id="memories">
     <div class="container">
       <header class="section__head">
-        <p class="meta">02 — A Short Film &nbsp;·&nbsp; 짧은 영상</p>
-        <h2 class="section__title">우리의 시간들,<br />짧게 모아 봤어요.</h2>
+        <p class="meta">02 — Together &nbsp;·&nbsp; 두 분이 함께한 순간</p>
+        <h2 class="section__title">함께 찍은<br />작은 순간들.</h2>
         <p class="section__lede">
-          함께한 순간들을 영상에 담았습니다. 편한 자리에서 한 번 봐주세요.
+          옆으로 넘기거나, 아래 좌우 버튼으로 한 장씩 천천히 봐주세요.
         </p>
       </header>
 
-      <div class="film">
-        <iframe
-          src="https://www.youtube.com/embed/MQ_GVehsojo"
-          title="어버이날 가족 영상"
-          loading="lazy"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="film__caption">
-        <span class="meta">Family Film &nbsp;·&nbsp; 2026</span>
-        <span class="meta">Press Play →</span>
+      <div class="carousel" aria-roledescription="carousel" aria-label="가족 사진">
+        <div class="carousel__track" id="carouselTrack" tabindex="0">
+          <figure class="carousel__slide"><img src="https://i.ibb.co/VWnqXqH6/IMG-0369.jpg" alt="가족 사진 1" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/0phxpHd0/IMG-7639.jpg" alt="가족 사진 2" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/pSYX64c/IMG-0200.jpg"  alt="가족 사진 3" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/kscBKvQx/IMG-8929.jpg" alt="가족 사진 4" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/whnG5M3Z/IMG-0328.jpg" alt="가족 사진 5" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/spbhbBg4/IMG-4995.jpg" alt="가족 사진 6" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/gZV8dxxy/IMG-2172.jpg" alt="가족 사진 7" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/yn939bVj/IMG-1316.jpg" alt="가족 사진 8" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/svQwzJ8G/IMG-9149.jpg" alt="가족 사진 9" loading="lazy" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="https://i.ibb.co/Xf2hwwf1/2026-05-08-4-30-32.png" alt="가족 사진 10" loading="lazy" decoding="async" /></figure>
+        </div>
+        <div class="carousel__bar">
+          <span class="meta">
+            <span id="carouselNow">01</span> &nbsp;/&nbsp; <span id="carouselTotal">10</span>
+          </span>
+          <div class="carousel__nav">
+            <button class="carousel__btn" type="button" data-dir="-1" aria-label="이전 사진">←</button>
+            <button class="carousel__btn" type="button" data-dir="1" aria-label="다음 사진">→</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -574,6 +766,26 @@
     <div class="meta">Made with love by family · 2026</div>
   </div>
 </footer>
+
+<!-- Cassette player (우측 하단 floating) -->
+<button id="cassettePlay" class="cassette" type="button" aria-pressed="false" aria-label="배경 음악 재생/일시정지">
+  <span class="cassette__body" aria-hidden="true">
+    <span class="cassette__label">
+      <span class="cassette__title">For My Parents</span>
+      <span class="cassette__sub">B-Side · 2026</span>
+    </span>
+    <span class="cassette__tape"></span>
+    <span class="cassette__reels">
+      <span class="cassette__reel"></span>
+      <span class="cassette__reel"></span>
+    </span>
+  </span>
+  <span class="cassette__cta">
+    <span class="cassette__dot" aria-hidden="true"></span>
+    <span id="cassetteCta">▶ Play</span>
+  </span>
+</button>
+<div id="ytPlayerHost" class="yt-host" aria-hidden="true"></div>
 
 <script>
 (function () {
@@ -661,6 +873,129 @@
   });
 
   render();
+})();
+
+/* CAROUSEL */
+(function () {
+  const track = document.getElementById('carouselTrack');
+  if (!track) return;
+  const slides = track.querySelectorAll('.carousel__slide');
+  const nowEl = document.getElementById('carouselNow');
+  const totalEl = document.getElementById('carouselTotal');
+  const total = slides.length;
+  totalEl.textContent = String(total).padStart(2, '0');
+
+  const pad = (n) => String(n).padStart(2, '0');
+
+  const updateIndex = () => {
+    const w = track.clientWidth || 1;
+    const idx = Math.min(total, Math.max(1, Math.round(track.scrollLeft / w) + 1));
+    nowEl.textContent = pad(idx);
+  };
+
+  let scrollRaf = 0;
+  track.addEventListener('scroll', () => {
+    if (scrollRaf) return;
+    scrollRaf = requestAnimationFrame(() => {
+      scrollRaf = 0;
+      updateIndex();
+    });
+  });
+
+  document.querySelectorAll('.carousel__btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = parseInt(btn.dataset.dir, 10) || 1;
+      const w = track.clientWidth;
+      const cur = Math.round(track.scrollLeft / w);
+      const next = Math.max(0, Math.min(total - 1, cur + dir));
+      track.scrollTo({ left: next * w, behavior: 'smooth' });
+    });
+  });
+
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      const dir = e.key === 'ArrowLeft' ? -1 : 1;
+      const w = track.clientWidth;
+      const cur = Math.round(track.scrollLeft / w);
+      const next = Math.max(0, Math.min(total - 1, cur + dir));
+      track.scrollTo({ left: next * w, behavior: 'smooth' });
+    }
+  });
+
+  window.addEventListener('resize', updateIndex);
+  updateIndex();
+})();
+
+/* CASSETTE PLAYER (YouTube IFrame API) */
+(function () {
+  const btn = document.getElementById('cassettePlay');
+  const ctaText = document.getElementById('cassetteCta');
+  if (!btn) return;
+
+  let player = null;
+  let ready = false;
+  let pendingPlay = false;
+
+  const setState = (playing) => {
+    btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    ctaText.textContent = playing ? '❚❚ Pause' : '▶ Play';
+  };
+
+  // 외부 스크립트 로드
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+
+  window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player('ytPlayerHost', {
+      height: '1',
+      width: '1',
+      videoId: 'MQ_GVehsojo',
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        disablekb: 1,
+        modestbranding: 1,
+        rel: 0,
+        playsinline: 1,
+        loop: 1,
+        playlist: 'MQ_GVehsojo'
+      },
+      events: {
+        onReady: () => {
+          ready = true;
+          if (pendingPlay) {
+            pendingPlay = false;
+            try { player.playVideo(); } catch (_) {}
+          }
+        },
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.PLAYING) setState(true);
+          else if (
+            e.data === YT.PlayerState.PAUSED ||
+            e.data === YT.PlayerState.ENDED ||
+            e.data === YT.PlayerState.BUFFERING && false
+          ) setState(false);
+          else if (e.data === YT.PlayerState.ENDED) setState(false);
+        },
+        onError: () => setState(false)
+      }
+    });
+  };
+
+  btn.addEventListener('click', () => {
+    if (!ready || !player) {
+      pendingPlay = true;
+      return;
+    }
+    const state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      try { player.pauseVideo(); } catch (_) {}
+    } else {
+      try { player.playVideo(); } catch (_) {}
+    }
+  });
 })();
 </script>
 
