@@ -12,7 +12,7 @@
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:title" content="장남 녕호가 보내는 편지" />
 <meta property="og:description" content="김필수 사장님, 손미숙 여사님의 행복한 어버이날을 위하여." />
-<meta property="og:image" content="https://formyparents.vercel.app/img/01.jpg" />
+<meta property="og:image" content="https://formyparents.vercel.app/img/01.gif" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -282,6 +282,11 @@
       brightness(1.02)
       sepia(0.08)
       hue-rotate(-4deg);
+  }
+  /* GIF 슬라이드 — 비율 유지 (잘림 없이) */
+  .carousel__slide--gif img {
+    object-fit: contain;
+    background: var(--paper);
   }
   /* 필름 그레인 — 사진 위에 노이즈 오버레이 */
   .carousel__slide::after {
@@ -818,7 +823,7 @@
 
       <div class="carousel" aria-roledescription="carousel" aria-label="가족 사진">
         <div class="carousel__track" id="carouselTrack" tabindex="0">
-          <figure class="carousel__slide"><img src="/img/01.jpg" alt="가족 사진 1" loading="eager" fetchpriority="high" decoding="async" /></figure>
+          <figure class="carousel__slide carousel__slide--gif"><img src="/img/01.gif" alt="가족 사진 1 (애니메이션)" loading="eager" fetchpriority="high" decoding="async" /></figure>
           <figure class="carousel__slide"><img src="/img/02.jpg" alt="가족 사진 2" loading="eager" decoding="async" /></figure>
           <figure class="carousel__slide"><img src="/img/03.jpg" alt="가족 사진 3" loading="lazy" decoding="async" /></figure>
           <figure class="carousel__slide"><img src="/img/04.jpg" alt="가족 사진 4" loading="lazy" decoding="async" /></figure>
