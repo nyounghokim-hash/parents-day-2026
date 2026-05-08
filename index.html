@@ -37,7 +37,7 @@
     --ink: #1a1a1a;
     --paper: #f7f5f0;
     --sage: #7a8a72;
-    --rose: #c89595;
+    --rose: #a85858;
     --line: rgba(26, 26, 26, 0.12);
     --muted: rgba(26, 26, 26, 0.55);
     --container: min(1240px, 92vw);
@@ -143,7 +143,10 @@
     margin: 0 0 clamp(20px, 3vw, 32px);
     white-space: nowrap;
   }
-  .accent { color: var(--rose); }
+  .accent {
+    color: var(--rose);
+    font-size: calc(1em + 2pt);
+  }
   .hero__lede {
     max-width: 36ch;
     font-size: var(--fs-sub);
