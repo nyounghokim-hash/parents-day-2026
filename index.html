@@ -12,10 +12,13 @@
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:title" content="장남 녕호가 보내는 편지" />
 <meta property="og:description" content="김필수 사장님, 손미숙 여사님의 행복한 어버이날을 위하여." />
-<meta property="og:image" content="https://formyparents.vercel.app/img/01.gif" />
+<meta property="og:image" content="https://formyparents.vercel.app/img/01.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
+
+<!-- Hero GIF preload — 가장 먼저 fetch -->
+<link rel="preload" as="image" href="/img/hero.gif" fetchpriority="high" />
 
 <!-- Pretendard (산세리프 본문) -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -156,13 +159,12 @@
   .hero__media {
     position: relative;
     aspect-ratio: 4 / 5;
-    background: #d9d4c8;
+    background: var(--paper);
     overflow: hidden;
     margin: 0;
   }
   .hero__media img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: saturate(0.92);
+    width: 100%; height: 100%; object-fit: contain;
   }
   .hero__caption {
     margin-top: 14px;
@@ -799,9 +801,11 @@
       </div>
       <figure class="hero__media">
         <img
-          src="/img/hero.jpg"
-          alt="손미숙 여사님과 김필수 사장님께 드리는 메인 이미지"
+          src="/img/hero.gif"
+          alt="손미숙 여사님과 김필수 사장님께 드리는 메인 이미지 (애니메이션)"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
       </figure>
     </div>
@@ -823,7 +827,7 @@
 
       <div class="carousel" aria-roledescription="carousel" aria-label="가족 사진">
         <div class="carousel__track" id="carouselTrack" tabindex="0">
-          <figure class="carousel__slide carousel__slide--gif"><img src="/img/01.gif" alt="가족 사진 1 (애니메이션)" loading="eager" fetchpriority="high" decoding="async" /></figure>
+          <figure class="carousel__slide"><img src="/img/01.jpg" alt="가족 사진 1" loading="eager" fetchpriority="high" decoding="async" /></figure>
           <figure class="carousel__slide"><img src="/img/02.jpg" alt="가족 사진 2" loading="eager" decoding="async" /></figure>
           <figure class="carousel__slide"><img src="/img/03.jpg" alt="가족 사진 3" loading="lazy" decoding="async" /></figure>
           <figure class="carousel__slide"><img src="/img/04.jpg" alt="가족 사진 4" loading="lazy" decoding="async" /></figure>
