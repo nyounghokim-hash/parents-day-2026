@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>2026 어버이날 — 우리 가족이 드리는 편지</title>
+<meta name="description" content="2026년 어버이날, 가족이 한 자리에 모여 마음을 적어 내려간 짧은 편지들." />
+<meta name="theme-color" content="#f7f5f0" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:title" content="2026 어버이날 — 우리 가족이 드리는 편지" />
+<meta property="og:description" content="가장 평범한 날들을 가장 특별하게 지켜주신 두 분께, 가족이 모여 쓴 편지." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&h=630&q=80" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Pretendard (산세리프 본문) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+/>
+
+<!-- Google Fonts: Dongle (큰 타이틀) + Nanum Pen Script (편지 본문) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Nanum+Pen+Script&display=swap"
+/>
+
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f7f5f0;
+    --sage: #7a8a72;
+    --line: rgba(26, 26, 26, 0.12);
+    --muted: rgba(26, 26, 26, 0.55);
+    --container: min(1240px, 92vw);
+    --fs-meta: clamp(11px, 0.85vw, 12px);
+    --fs-body: clamp(16px, 1.05vw, 17px);
+    --fs-sub: clamp(18px, 1.4vw, 21px);
+    --fs-h2: clamp(48px, 7vw, 96px);
+    --fs-h1: clamp(72px, 13vw, 180px);
+    --lh-body: 1.75;
+    --font-display: 'Dongle', 'Pretendard Variable', Pretendard, sans-serif;
+    --font-letter: 'Nanum Pen Script', 'Gaegu', 'Pretendard Variable', cursive;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+      system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse at 22% 12%, rgba(166, 148, 116, 0.10), transparent 55%),
+      radial-gradient(ellipse at 82% 82%, rgba(122, 138, 114, 0.07), transparent 60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    word-break: keep-all;
+    position: relative;
+  }
+  /* 한지 텍스처 — fractalNoise, 은은하게 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='h'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='7'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.34  0 0 0 0 0.24  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23h)'/></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='2' stitchTiles='stitch' seed='3'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.46  0 0 0 0 0.32  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>");
+    background-size: 420px 420px, 800px 800px;
+    background-repeat: repeat, repeat;
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input, textarea { font: inherit; color: inherit; }
+
+  .container { width: var(--container); margin: 0 auto; }
+  .meta {
+    font-size: var(--fs-meta);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* TOPBAR */
+  .topbar {
+    border-bottom: 1px solid var(--line);
+    padding: clamp(16px, 2.5vw, 22px) 0;
+  }
+  .topbar__inner {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .brand {
+    font-size: var(--fs-meta);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex; align-items: center;
+  }
+  .brand::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sage);
+    margin-right: 12px;
+  }
+
+  /* HERO */
+  .hero { padding: clamp(48px, 9vw, 140px) 0 clamp(64px, 9vw, 160px); }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: end;
+  }
+  @media (min-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 7fr 5fr;
+      gap: clamp(40px, 5vw, 96px);
+    }
+  }
+  .hero__eyebrow { margin-bottom: clamp(16px, 2.4vw, 28px); }
+  .hero__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-h1);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin: 0 0 clamp(20px, 3vw, 32px);
+  }
+  .hero__title .accent { color: var(--sage); }
+  .hero__lede {
+    max-width: 36ch;
+    font-size: var(--fs-sub);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .hero__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: #d9d4c8;
+    overflow: hidden;
+    margin: 0;
+  }
+  .hero__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.92);
+  }
+  .hero__caption {
+    margin-top: 14px;
+  }
+
+  /* SECTION */
+  .section {
+    padding: clamp(64px, 10vw, 160px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .section__head {
+    display: grid;
+    gap: clamp(12px, 2vw, 20px);
+    margin-bottom: clamp(40px, 6vw, 80px);
+    max-width: 760px;
+  }
+  .section__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    line-height: 0.95;
+    margin: 0;
+  }
+  .section__lede {
+    font-size: var(--fs-sub);
+    line-height: 1.65;
+    margin: 8px 0 0;
+    max-width: 50ch;
+    color: var(--ink);
+  }
+
+  /* NOTE */
+  .note__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .note__grid { grid-template-columns: 5fr 7fr; }
+  }
+  .note__photo {
+    aspect-ratio: 3 / 4;
+    background: #c2b8a0;
+    overflow: hidden;
+    margin: 0;
+  }
+  .note__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .note__body p {
+    font-size: var(--fs-sub);
+    line-height: 1.75;
+    margin: 0 0 1em;
+    max-width: 38ch;
+  }
+  .note__sign {
+    margin-top: 16px;
+  }
+
+  /* FILM */
+  .film {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .film iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .film__caption {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* LETTER FORM */
+  .letterbox {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .letterbox { grid-template-columns: 5fr 7fr; }
+  }
+  .letterbox__intro p {
+    font-size: var(--fs-sub);
+    line-height: 1.75;
+    max-width: 32ch;
+    margin: 0 0 1em;
+  }
+  .form {
+    display: grid;
+    gap: clamp(18px, 2vw, 24px);
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: clamp(24px, 3.5vw, 40px);
+  }
+  .field { display: grid; gap: 10px; }
+  .field label { color: var(--muted); }
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s ease;
+    resize: vertical;
+    border-radius: 0;
+  }
+  .field textarea { min-height: 180px; }
+  .field input:focus,
+  .field textarea:focus { border-bottom-color: var(--sage); }
+
+  .form__actions {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; margin-top: 6px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--ink); color: var(--paper);
+    padding: 16px 28px;
+    border: 1px solid var(--ink);
+    font-size: var(--fs-meta);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    border-radius: 0;
+  }
+  .btn:hover, .btn:focus-visible {
+    background: var(--sage); border-color: var(--sage); color: #fff;
+    outline: none;
+  }
+  .form__hint { color: var(--muted); }
+
+  /* LETTERS LIST */
+  .letters {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 3vw, 28px);
+  }
+  @media (min-width: 720px) { .letters { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .letters { grid-template-columns: repeat(3, 1fr); } }
+
+  .letter {
+    --line-h: 2.1em;
+    position: relative;
+    border: 1px solid var(--line);
+    background-color: #fdfbf3;
+    box-shadow:
+      0 1px 0 rgba(26, 26, 26, 0.04),
+      0 12px 24px -18px rgba(26, 26, 26, 0.18);
+    padding: clamp(24px, 3vw, 36px) clamp(24px, 3vw, 40px) clamp(28px, 3vw, 36px);
+    display: flex; flex-direction: column; gap: 18px;
+    overflow: hidden;
+  }
+  .letter::before {
+    /* 좌측 마진 라인 — 편지지 시그널 */
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: clamp(18px, 2.2vw, 28px);
+    width: 1px;
+    background: rgba(170, 80, 70, 0.18);
+  }
+  .letter__meta {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(26, 26, 26, 0.12);
+  }
+  .letter__from {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: var(--fs-meta);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .letter__date {
+    color: var(--muted);
+    font-size: var(--fs-meta);
+    letter-spacing: 0.22em;
+  }
+  .letter__body {
+    font-family: var(--font-letter);
+    font-size: clamp(22px, 1.7vw, 28px);
+    line-height: var(--line-h);
+    color: var(--ink);
+    white-space: pre-wrap;
+    margin: 0;
+    padding: 0.2em 0 0.4em;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--line-h) - 1px),
+      rgba(26, 26, 26, 0.10) calc(var(--line-h) - 1px),
+      rgba(26, 26, 26, 0.10) var(--line-h)
+    );
+    background-position: 0 0.2em;
+    background-size: 100% var(--line-h);
+    background-attachment: local;
+  }
+  .letter__sign {
+    align-self: flex-end;
+    font-family: var(--font-letter);
+    font-size: clamp(20px, 1.4vw, 24px);
+    color: var(--ink);
+    margin: 0;
+  }
+  .letter__delete {
+    align-self: flex-start;
+    background: transparent; border: 0;
+    color: var(--muted);
+    cursor: pointer; padding: 4px 0;
+    font-size: var(--fs-meta);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+  .letter__delete:hover, .letter__delete:focus-visible { color: var(--ink); outline: none; }
+
+  .empty {
+    border: 1px dashed var(--line);
+    padding: clamp(32px, 5vw, 56px);
+    font-size: var(--fs-sub);
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: clamp(48px, 6vw, 80px) 0 clamp(64px, 9vw, 120px);
+  }
+  .footer__row {
+    display: flex; justify-content: space-between; align-items: end;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(56px, 8vw, 96px);
+    letter-spacing: -0.005em;
+    line-height: 0.95;
+    margin: 0;
+    max-width: 18ch;
+  }
+
+  /* a11y */
+  :focus-visible { outline: 2px solid var(--sage); outline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar__inner">
+    <div class="brand">For Mom &amp; Dad — Vol. 01</div>
+    <div class="meta">May 8, 2026</div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="meta hero__eyebrow">Parents&apos; Day · 어버이날 2026</p>
+        <h1 class="hero__title">
+          사랑하는<br />
+          <span class="accent">두 분께.</span>
+        </h1>
+        <p class="hero__lede">
+          올해 어버이날, 가족이 한 자리에 모이지 못해도 마음만은 이 페이지 위에. 우리가 천천히 적어 내려간 짧은 편지들을, 부디 천천히 읽어주세요.
+        </p>
+      </div>
+      <figure class="hero__media">
+        <img
+          src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1400&q=80"
+          alt="햇살 아래 카네이션"
+          loading="eager"
+        />
+      </figure>
+    </div>
+    <div class="container">
+      <p class="meta hero__caption">Carnations &nbsp;·&nbsp; A Quiet Tribute</p>
+    </div>
+  </section>
+
+  <!-- 01 — NOTE -->
+  <section class="section">
+    <div class="container">
+      <header class="section__head">
+        <p class="meta">01 — A Family Note &nbsp;·&nbsp; 가족의 메모</p>
+        <h2 class="section__title">사랑한다는 말,<br />오늘은 글로 남깁니다.</h2>
+        <p class="section__lede">
+          평소엔 쉽게 꺼내지 못한 말들. 작은 페이지 한 장에 모아, 두고두고 들여다볼 수 있게 했어요.
+        </p>
+      </header>
+
+      <div class="note__grid">
+        <figure class="note__photo">
+          <img
+            src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=80"
+            alt="햇살이 드는 거실 풍경"
+            loading="lazy"
+          />
+        </figure>
+        <div class="note__body">
+          <p>아침 식탁에 놓인 김이 모락모락 나는 국그릇. 학교 가는 길에 챙겨주신 우산 한 자루. 시간이 한참 지나서야 깨닫게 된, 사랑의 모양들이에요.</p>
+          <p>오늘 하루만큼은 두 분이 받기만 하시는 날이었으면 합니다. 받아만 주세요. 사랑하고, 또 사랑합니다.</p>
+          <p class="meta note__sign">— From the family</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — FILM -->
+  <section class="section" id="film">
+    <div class="container">
+      <header class="section__head">
+        <p class="meta">02 — A Short Film &nbsp;·&nbsp; 짧은 영상</p>
+        <h2 class="section__title">우리의 시간들,<br />짧게 모아 봤어요.</h2>
+        <p class="section__lede">
+          함께한 순간들을 영상에 담았습니다. 편한 자리에서 한 번 봐주세요.
+        </p>
+      </header>
+
+      <div class="film">
+        <iframe
+          src="https://www.youtube.com/embed/MQ_GVehsojo"
+          title="어버이날 가족 영상"
+          loading="lazy"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="film__caption">
+        <span class="meta">Family Film &nbsp;·&nbsp; 2026</span>
+        <span class="meta">Press Play →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — WRITE -->
+  <section class="section" id="write">
+    <div class="container">
+      <header class="section__head">
+        <p class="meta">03 — Write a Letter &nbsp;·&nbsp; 편지 쓰기</p>
+        <h2 class="section__title">한 줄이라도 좋아요.<br />마음을 적어주세요.</h2>
+        <p class="section__lede">
+          이름과 짧은 편지를 남겨주세요. 가족 모두의 편지가 아래 모입니다. 같은 기기에서 다시 열어볼 수 있어요.
+        </p>
+      </header>
+
+      <div class="letterbox">
+        <div class="letterbox__intro">
+          <p>긴 글이 아니어도 좋아요. 자주 못 드린 말, 오늘만큼은 한 줄로 충분합니다.</p>
+        </div>
+
+        <form class="form" id="letterForm" autocomplete="off" novalidate>
+          <div class="field">
+            <label class="meta" for="name">From · 이름</label>
+            <input id="name" name="name" type="text" maxlength="40" required
+                   placeholder="첫째 아들 / 둘째 딸 / 손주 ..." />
+          </div>
+          <div class="field">
+            <label class="meta" for="message">Letter · 편지</label>
+            <textarea id="message" name="message" maxlength="1500" required
+                      placeholder="엄마, 아빠. 오늘 하루만큼은…"></textarea>
+          </div>
+          <div class="form__actions">
+            <span class="meta form__hint">Save · 이 기기에 저장됩니다</span>
+            <button class="btn" type="submit">편지 보내기 →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — LETTERS -->
+  <section class="section" id="letters-section">
+    <div class="container">
+      <header class="section__head">
+        <p class="meta">04 — Family Letters &nbsp;·&nbsp; 가족이 보낸 편지</p>
+        <h2 class="section__title">우리가 모은 마음들.</h2>
+      </header>
+      <div id="letters" class="letters" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__row">
+    <h3 class="footer__title">고맙습니다,<br />사랑합니다.</h3>
+    <div class="meta">Made with love by family · 2026</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  const KEY = 'parents-day-2026-letters';
+  const form = document.getElementById('letterForm');
+  const list = document.getElementById('letters');
+  const nameEl = document.getElementById('name');
+  const msgEl = document.getElementById('message');
+
+  const read = () => {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+    catch (_) { return []; }
+  };
+  const write = (letters) => {
+    try { localStorage.setItem(KEY, JSON.stringify(letters)); }
+    catch (_) { /* storage full or disabled */ }
+  };
+
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+
+  const fmtDate = (ts) => {
+    const d = new Date(ts);
+    if (isNaN(d.getTime())) return '';
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return y + '.' + m + '.' + day;
+  };
+
+  function render() {
+    const letters = read().sort((a, b) => b.ts - a.ts);
+    if (!letters.length) {
+      list.innerHTML = '<div class="empty">아직 도착한 편지가 없어요.<br />가장 먼저 한 줄을 남겨주세요.</div>';
+      return;
+    }
+    list.innerHTML = letters.map((l) => `
+      <article class="letter" data-id="${escapeHtml(l.id)}">
+        <header class="letter__meta">
+          <span class="letter__from">From · ${escapeHtml(l.name)}</span>
+          <span class="letter__date">${fmtDate(l.ts)}</span>
+        </header>
+        <p class="letter__body">${escapeHtml(l.message)}</p>
+        <p class="letter__sign">— ${escapeHtml(l.name)} 드림</p>
+        <button class="letter__delete" type="button" aria-label="이 편지 삭제">— 삭제</button>
+      </article>
+    `).join('');
+  }
+
+  list.addEventListener('click', (e) => {
+    const btn = e.target.closest('.letter__delete');
+    if (!btn) return;
+    const card = btn.closest('.letter');
+    const id = card && card.dataset.id;
+    if (!id) return;
+    if (!confirm('이 편지를 삭제할까요?')) return;
+    write(read().filter((l) => l.id !== id));
+    render();
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = nameEl.value.trim();
+    const message = msgEl.value.trim();
+    if (!name || !message) {
+      if (!name) nameEl.focus();
+      else msgEl.focus();
+      return;
+    }
+    const letters = read();
+    letters.push({
+      id: 'l_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+      name: name,
+      message: message,
+      ts: Date.now()
+    });
+    write(letters);
+    nameEl.value = '';
+    msgEl.value = '';
+    render();
+    document.getElementById('letters-section')
+      .scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
